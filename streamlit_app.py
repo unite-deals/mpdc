@@ -1,6 +1,7 @@
 import streamlit as st
 from PyPDF2 import PdfReader
 import pdfplumber
+import pdfplumber.display
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 import os
 from langchain_google_genai import GoogleGenerativeAIEmbeddings
@@ -37,7 +38,62 @@ load_dotenv()
 os.getenv("GOOGLE_API_KEY")
 genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
 
+custom_css = """
+<style>
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+}
 
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.header {
+    background-color: #3498db;
+    color: #ffffff;
+    padding: 1rem;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.sidebar {
+    background-color: #2c3e50;
+    color: #ffffff;
+    padding: 1rem;
+    border-radius: 5px;
+}
+
+.sidebar h3 {
+    margin-bottom: 1.5rem;
+}
+
+.content {
+    background-color: #ffffff;
+    padding: 1rem;
+    margin-top: 1rem;
+    border-radius: 5px;
+}
+
+.button {
+    background-color: #3498db;
+    color: #ffffff;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: #2980b9;
+}
+
+</style>
+"""
 
 
 
