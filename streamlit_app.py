@@ -1,5 +1,5 @@
 import streamlit as st
-import PyPDF2
+import pdfplumber
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 import os
 from langchain_google_genai import GoogleGenerativeAIEmbeddings
@@ -20,12 +20,12 @@ genai.configure(api_key=os.getenv("AIzaSyDVQubOFyqyRDepOELUXwVRBMnbngkHYm8"))
 
 
 def get_pdf_text(pdf_docs):
-    text=""
+    text = ""
     for pdf in pdf_docs:
-        pdf_reader= PyPDF2.PdfFileReader(pdf)
-        for page in pdf_reader.pages:
-            text+= page.extract_text()
-    return  text
+        with pdfplumber.open(pdf) as pdf_reader:
+            for page in pdf_reader.pages:
+                text += page.extract_text()
+    return text
 
 
 
