@@ -8,4 +8,4 @@ chromadb
 faiss-cpu
 langchain_google_genai
 pyperclip
-pandas
+pandas==1.5.3
