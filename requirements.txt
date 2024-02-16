@@ -9,3 +9,4 @@ faiss-cpu
 langchain_google_genai
 pyperclip
 pandas==1.5.3
+langchain-community
