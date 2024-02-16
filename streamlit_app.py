@@ -95,7 +95,7 @@ body {
 </style>
 """
 
-
+st.markdown(custom_css, unsafe_allow_html=True)
 
 
 def get_pdf_text(pdf_docs):
