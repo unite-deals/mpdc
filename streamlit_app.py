@@ -111,7 +111,7 @@ def save_to_csv(email_list):
     df.to_csv("email_list.csv", index=False)
 
 def get_text_chunks(text):
-    text_splitter = RecursiveCharacterTextSplitter(chunk_size=100000, chunk_overlap=1000)
+    text_splitter = RecursiveCharacterTextSplitter(chunk_size=100000, chunk_overlap=0)
     chunks = text_splitter.split_text(text)
     return chunks
 
