@@ -179,7 +179,7 @@ def main():
     user_question = st.text_input("Ask a Question from the PDF Files")
 
     if user_question:
-        user_input(user_question)
+        user_input(user_question,[])
 
     with st.sidebar:
         st.title("Menu:")
