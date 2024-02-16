@@ -12,6 +12,27 @@ from langchain.prompts import PromptTemplate
 from dotenv import load_dotenv
 import pyperclip
 
+
+hide_github_link_style = """
+    <style>
+    #MainMenu {visibility: hidden;}
+    footer {visiblity: hidden;}
+    header {visibility: hidden;}
+        .viewerBadge_container__1QSob {
+            display: none !important;
+        }
+    </style>
+"""
+st.markdown(hide_github_link_style, unsafe_allow_html=True)
+hide_streamlit_style = """
+            <style>
+            #MainMenu {visibility: hidden;}
+            footer {visibility: hidden;}
+            </style>
+            """
+st.markdown(hide_streamlit_style, unsafe_allow_html=True) 
+
+
 load_dotenv()
 os.getenv("GOOGLE_API_KEY")
 genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
