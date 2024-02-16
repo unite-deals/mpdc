@@ -106,7 +106,9 @@ def get_pdf_text(pdf_docs):
                 text += page.extract_text()
     return text
 
-
+def save_to_csv(email_list):
+    df = pd.DataFrame(email_list, columns=["Email"])
+    df.to_csv("email_list.csv", index=False)
 
 def get_text_chunks(text):
     text_splitter = RecursiveCharacterTextSplitter(chunk_size=100000, chunk_overlap=1000)
@@ -141,7 +143,12 @@ def get_conversational_chain():
 
 
 
-def user_input(user_question):
+def user_input(user_question ,email_list):
+    email = st.text_input("Enter your email:")
+    if st.button("Submit Email"):
+        email_list.append(email)
+        save_to_csv(email_list)
+        st.success(f"Email {email} submitted successfully!")
     embeddings = GoogleGenerativeAIEmbeddings(model = "models/embedding-001")
     
     new_db = FAISS.load_local("faiss_index", embeddings)
