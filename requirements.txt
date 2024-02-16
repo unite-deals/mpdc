@@ -8,3 +8,4 @@ chromadb
 faiss-cpu
 langchain_google_genai
 pyperclip
+pandas
