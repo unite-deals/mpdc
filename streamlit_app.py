@@ -10,6 +10,7 @@ from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain.chains.question_answering import load_qa_chain
 from langchain.prompts import PromptTemplate
 from dotenv import load_dotenv
+import pyperclip
 
 load_dotenv()
 os.getenv("GOOGLE_API_KEY")
@@ -45,8 +46,8 @@ def get_vector_store(text_chunks):
 def get_conversational_chain():
 
     prompt_template = """
-    Answer the question as detailed as possible from the provided context, make sure to provide all the details, if the answer is not in
-    provided context just say, "answer is not available in the context", don't provide the wrong answer\n\n
+    Answer the question as detailed as possible from the provided context if possible add some key points in list format , make sure to provide all the details, if the answer is not in
+    provided context just say, "answer is not available in the context & add your suggestion is differet subtitle also", don't provide the wrong answer\n\n
     Context:\n {context}?\n
     Question: \n{question}\n
 
@@ -78,6 +79,11 @@ def user_input(user_question):
 
     print(response)
     st.write("Reply: ", response["output_text"])
+
+    # Add a "Copy to Clipboard" button
+    if st.button("Copy to Clipboard", key="copy_button"):
+        pyperclip.copy(response["output_text"])
+        st.success("Copied to Clipboard!")
 
 
 
