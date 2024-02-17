@@ -143,12 +143,7 @@ def get_conversational_chain():
 
 
 
-def user_input(user_question ,email_list):
-    email = st.text_input("Enter your email:")
-    if st.button("Submit Email"):
-        email_list.append(email)
-        save_to_csv(email_list)
-        st.success(f"Email {email} submitted successfully!")
+def user_input(user_question ):
     embeddings = GoogleGenerativeAIEmbeddings(model = "models/embedding-001")
     
     new_db = FAISS.load_local("faiss_index", embeddings)
@@ -179,7 +174,7 @@ def main():
     user_question = st.text_input("Ask a Question from the PDF Files")
 
     if user_question:
-        user_input(user_question,[])
+        user_input(user_question)
 
     with st.sidebar:
         st.title("Menu:")
