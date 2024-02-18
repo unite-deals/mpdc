@@ -143,7 +143,7 @@ def get_conversational_chain():
 
 
 
-def user_input(user_question ):
+def user_input(user_question):
     embeddings = GoogleGenerativeAIEmbeddings(model = "models/embedding-001")
     
     new_db = FAISS.load_local("faiss_index", embeddings)
