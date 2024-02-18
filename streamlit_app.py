@@ -111,7 +111,7 @@ def save_to_csv(email_list):
     df.to_csv("email_list.csv", index=False)
 
 def get_text_chunks(text):
-    text_splitter = RecursiveCharacterTextSplitter(chunk_size=100000, chunk_overlap=0)
+    text_splitter = RecursiveCharacterTextSplitter(chunk_size=100, chunk_overlap=0)
     chunks = text_splitter.split_text(text)
     return chunks
 
@@ -134,7 +134,7 @@ def get_conversational_chain():
     """
 
     model = ChatGoogleGenerativeAI(model="gemini-pro",
-                             temperature=0.3)
+                             temperature=0.7)
 
     prompt = PromptTemplate(template = prompt_template, input_variables = ["context", "question"])
     chain = load_qa_chain(model, chain_type="stuff", prompt=prompt)
